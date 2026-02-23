@@ -7,7 +7,7 @@
 
 
 **Screen recording of Mind Vault**
-![Mind Vault Screen Recording](Mind_Vault_Screen_Recording.mp4)
+[Mind Vault Screen Recording](Mind_Vault_Screen_Recording.mp4)
 
 ---
 
