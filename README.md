@@ -1,70 +1,130 @@
-# Getting Started with Create React App
+# Mind Vault (AI-powered RAG knowledge base)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Mind Vault** is a powerful, self-hosted knowledge management system that leverages Retrieval-Augmented Generation (RAG) to help you store, organize, and query your information intelligently. Whether it's a deep-dive research paper, a blog post URL, or just a quick note, Mind Vault turns your static data into an interactive knowledge base.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Key Features
 
-### `npm start`
+-   **Ingestion**: Add content via direct URLs or raw text. The system automatically fetches, cleans, and processes web content.
+-   **Chunking**: Transparently breaks down long documents into manageable, context-aware chunks for optimal retrieval.
+-   **Semantic Search**: Uses vector embeddings via ChromaDB to find the most relevant information based on *meaning*, not just keywords.
+-   **AI Insights**: Integrated with **Google Gemini (Flash Lite)** to provide concise, context accurate answers based *only* on your stored knowledge.
+-   **Modern Dashboard**: A clean, intuitive interface built with React and Material UI, featuring real-time state management via Redux Toolkit.
+-   **Source Tracking**: Every answer provided by the AI comes with linked sources, so you can always verify the information.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Getting Started
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Prerequisites
 
-### `npm test`
+-   **Python 3.9+**
+-   **Node.js 18+**
+-   **Google AI Studio API Key** (for Gemini)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Backend Setup
 
-### `npm run build`
+1.  Navigate to the `backend` directory:
+    ```bash
+    cd backend
+    ```
+2.  Create and activate a virtual environment:
+    ```bash
+    python -m venv .venv
+    .venv\Scripts\activate # IOS: source .venv/bin/activate
+    ```
+3.  Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+4.  Configure environment variables:
+    Create a `.env` file in the `backend` folder:
+    ```env
+    GEMINI_API_KEY=your_api_key_here
+    ```
+5.  Launch the server:
+    ```bash
+    python main.py
+    ```
+    The API will be available at `http://localhost:8000`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Frontend Setup
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1.  Navigate to the `frontend` directory:
+    ```bash
+    cd frontend
+    ```
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+3.  Start the development server:
+    ```bash
+    npm start
+    ```
+    The dashboard will open at `http://localhost:3000`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Tech Stack
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Backend
+-   **Framework**: [FastAPI](https://fastapi.tiangolo.com/)  
+-   **Vector Database**: [ChromaDB](https://www.trychroma.com/)
+-   **LLM & LLM Model**: [Google Gemini & gemini-flash-lite-latest](https://aistudio.google.com/)
+-   **Scraping**: BeautifulSoup4 & Urllib
+-   **Logging**: Custom structured logging for debugging ingestion pipelines
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Frontend
+-   **Library**: [React 19](https://react.dev/)
+-   **State Management**: [Redux Toolkit](https://redux-toolkit.js.org/)
+-   **UI Components**: [Material UI (MUI)](https://mui.com/)
+-   **Styling**: Emotion (CSS-in-JS)
+-   **API Client**: Axios
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# Mind Vault Backend
 
-## Learn More
+## API Endpoints
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- `POST /api/ingest`: Submit a URL or text for processing and storage.
+- `POST /api/query`: Ask a question based on stored knowledge.
+- `GET /api/items`: List all ingested knowledge items.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Core Components
 
-### Code Splitting
+- **ChromaDB**: Local vector database stored in `./chroma_storage`.
+- **GenAI Client**: Integrated with Google Gemini Flash Lite for fast, accurate generation.
+- **Services**:
+  - `url_fetcher.py`: Web scraping logic.
+  - `chunker.py`: Text segmentation logic.
+  - `vector_store.py`: ChromaDB interaction layer.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+# Mind Vault Frontend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Features
 
-### Making a Progressive Web App
+- **Knowledge Ingestion**: Simple form to submit URLs or text blocks.
+- **AI Chat Interface**: Interactive chat to query your stored knowledge with cited sources.
+- **Status Monitoring**: Visual feedback for ingestion and query states.
+- **State Management**: Uses Redux Toolkit for consistent data flow across components.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Tech Stack
 
-### Advanced Configuration
+- **React 19**
+- **Material UI v7**
+- **Redux Toolkit**
+- **Axios**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## Privacy & Local First
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Data index (ChromaDB) is stored locally in the `backend/chroma_storage` directory. Only the specific context chunks required to answer a question are sent to the Gemini API.
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Screen recording of Mind Vault
+https://drive.google.com/file/d/1AMMHDWkqlauTxy3GT-uEFnFHYWaw9kFx/view?usp=sharing
