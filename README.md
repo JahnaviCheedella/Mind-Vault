@@ -2,6 +2,13 @@
 
 **Mind Vault** is a powerful, self-hosted knowledge management system that leverages Retrieval-Augmented Generation (RAG) to help you store, organize, and query your information intelligently. Whether it's a deep-dive research paper, a blog post URL, or just a quick note, Mind Vault turns your static data into an interactive knowledge base.
 
+**Screenshots**
+![Mind Vault Screenshot](Mind_Vault_Screenshot.png)
+
+
+**Screen recording of Mind Vault**
+![Mind Vault Screen Recording](Mind_Vault_Screen_Recording.mp4)
+
 ---
 
 ## Key Features
@@ -126,5 +133,3 @@ Data index (ChromaDB) is stored locally in the `backend/chroma_storage` director
 
 ---
 
-# Screen recording of Mind Vault
-https://drive.google.com/file/d/1AMMHDWkqlauTxy3GT-uEFnFHYWaw9kFx/view?usp=sharing
